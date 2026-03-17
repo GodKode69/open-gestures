@@ -1,7 +1,7 @@
 from gestures.static.fist import Fist
 from gestures.static.open import Open
-from gestures.static.two_finger import TwoFinger
-from gestures.static.three_finger import ThreeFinger
+#from gestures.static.two_finger import TwoFinger
+#from gestures.static.three_finger import ThreeFinger
 
 from gestures.motion.swipe_left import SwipeLeft
 from gestures.motion.swipe_right import SwipeRight
@@ -19,8 +19,8 @@ class Gestures:
         self.gestures = [
             Fist(),
             Open(),
-            TwoFinger(),
-            ThreeFinger(),
+            #TwoFinger(),
+            #ThreeFinger(),
             SwipeLeft(),
             SwipeRight(),
             SwipeUp(),
