@@ -1,4 +1,5 @@
 from __future__ import annotations
+import pythoncom
 from ctypes import cast, POINTER
 from comtypes import CLSCTX_ALL
 from pycaw.pycaw import AudioUtilities, IAudioEndpointVolume
@@ -14,11 +15,14 @@ def matches(result) -> bool:
 
 def action() -> None:
     try:
+        pythoncom.CoInitialize()
+        # GetSpeakers() returns an AudioDevice wrapper — access raw COM device via ._dev
         devices = AudioUtilities.GetSpeakers()
-        interface = devices.Activate(IAudioEndpointVolume._iid_, CLSCTX_ALL, None)
+        interface = devices._dev.Activate(IAudioEndpointVolume._iid_, CLSCTX_ALL, None)
         volume = cast(interface, POINTER(IAudioEndpointVolume))
         current_vol = volume.GetMasterVolumeLevelScalar()
-        # Decrease volume by 5% (0.05 scalar)
         volume.SetMasterVolumeLevelScalar(max(0.0, current_vol - 0.05), None)
     except Exception as exc:
         print(f"[{GESTURE_NAME}] {exc}")
+    finally:
+        pythoncom.CoUninitialize()
