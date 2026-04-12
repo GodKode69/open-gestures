@@ -24,7 +24,7 @@ def action() -> None:
     try:
         import subprocess
         subprocess.Popen(
-            ["pactl", "set-sink-mute", "@DEFAULT_SINK@", "toggle"],
+            ["pactl", "set-sink-mute", "@DEFAULT_SINK@", "1"], #1 = mute
             stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL,
         )
     except Exception as exc:
