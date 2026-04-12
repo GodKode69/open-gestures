@@ -1,7 +1,7 @@
 {
   "gesture_map": {
     "default": {
-      "close_2": "kill_window",
+      "close_2": "close_window",
       "close_1": "pause_media",
       "open_1": "play_media",
       "open_2": "open_browser",
@@ -31,5 +31,8 @@
   "swipe": {
     "frame_limit": 20,
     "displacement_threshold": 0.25
+  },
+  "config": {
+    "window_manager": { "default": "hyprland", "custom": {} }
   }
 }
