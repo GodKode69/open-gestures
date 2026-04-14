@@ -32,7 +32,7 @@ Each file under `gestures/static/` and `gestures/motion/` is a self-contained Py
 
 ## Gesture Module Contract
 
-Every gesture module must expose three things:
+Every gesture module must expose two things:
 
 ```python
 GESTURE_NAME: str       # Unique identifier used as the cooldown key and display label.
@@ -40,12 +40,29 @@ GESTURE_NAME: str       # Unique identifier used as the cooldown key and display
 def matches(result) -> bool:
     # Receives a MediaPipe GestureRecognizerResult.
     # Return True if this gesture should fire given the current result.
-
-def action() -> None:
-    # The side-effect to execute when the gesture is matched and cooldown has passed.
 ```
 
-Modules that do not expose all three attributes are skipped at load time with a warning.
+
+Modules that do not expose all two attributes are skipped at load time with a warning.
+
+---
+
+## Action Module Contract
+
+Every action module must expose four things:
+
+```python
+ACTION_NAME: str         # Unique identifier used as the cooldown key and display label.
+ACTION_DESCRIPTION: str  # Unique description shown in gui
+ACTION_ID: str           # Unique id used by the router to connect gestures with the action
+
+def execute(self) -> None:
+    # Action logic here
+```
+
+
+Modules that do not expose all four attributes are skipped at load time with a warning.
+
 
 ---
 
