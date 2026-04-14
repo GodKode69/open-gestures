@@ -30,7 +30,7 @@
   },
   "swipe": {
     "frame_limit": 20,
-    "displacement_threshold": 0.25
+    "displacement_threshold": 0.1
   },
   "config": {
     "window_manager": { "default": "hyprland", "custom": {} }
