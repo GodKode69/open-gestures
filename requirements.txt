@@ -2,4 +2,4 @@ pynput
 mediapipe
 opencv-python
 pycom
-pywin32
+pywin32 #ignore if installing on mac
