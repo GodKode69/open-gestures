@@ -9,18 +9,15 @@ class VolumeUp(BaseAction):
 
     def execute(self) -> None:
         sys = system()
-        
-        if sys=="linux":
+        if sys == "linux":
             try:
-                subprocess.Popen(
-                    ["pactl", "set-sink-volume", "@DEFAULT_SINK@", "+5%"],
-                    stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL,
-                )
+                subprocess.Popen(["pactl", "set-sink-volume", "@DEFAULT_SINK@", "+10%"], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
             except Exception as exc:
                 print(f"[{self.id}] {exc}")
-        elif sys=="win":
-            #code here
+        elif sys == "win":
             print("hi")
-        elif sys=="mac":
-            #code here
-            print("hie")
+        elif sys == "mac":
+            try:
+                subprocess.Popen(["osascript", "-e", "set volume output volume (output volume of (get volume settings) + 10)"], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+            except Exception as exc:
+                print(f"[{self.id}] {exc}")

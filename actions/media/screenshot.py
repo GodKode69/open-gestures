@@ -2,22 +2,22 @@ import subprocess
 from actions.base import BaseAction
 from actions.system import system
 
-class PauseMedia(BaseAction):
-    name = "Pause Media"
-    description = "Pause system media"
-    id = "pause_media"
+class Screenshot(BaseAction):
+    name = "Screenshot"
+    description = "Take a screenshot"
+    id = "record_screen"
 
     def execute(self) -> None:
         sys = system()
         if sys == "linux":
             try:
-                subprocess.Popen(["playerctl", "pause"], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+                subprocess.Popen(["scrot"], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
             except Exception as exc:
                 print(f"[{self.id}] {exc}")
         elif sys == "win":
             print("hi")
         elif sys == "mac":
             try:
-                subprocess.Popen(["osascript", "-e", "tell application \"System Events\" to key code 16"], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+                subprocess.Popen(["osascript", "-e", "tell application \"System Events\" to keystroke \"4\" using {command down, shift down}"], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
             except Exception as exc:
                 print(f"[{self.id}] {exc}")
