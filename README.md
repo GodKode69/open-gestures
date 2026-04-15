@@ -1,6 +1,6 @@
 # open-gestures
 
-Open-source, real-time hand gesture control for Linux using MediaPipe and OpenCV. The system reads frames from a webcam, classifies hand gestures using a MediaPipe GestureRecognizer model running in live-stream mode, and routes recognized gestures to modular action handlers. Up to two hands are tracked simultaneously, with priority given to two-hand gestures over single-hand ones.
+Open-source, real-time hand gesture control for ALL MAJOR OPERATING SYSTEMS using MediaPipe and OpenCV. The system reads frames from a webcam, classifies hand gestures using a MediaPipe GestureRecognizer model running in live-stream mode, and routes recognized gestures to modular action handlers. Up to two hands are tracked simultaneously, with priority given to two-hand gestures over single-hand ones.
 
 ---
 
