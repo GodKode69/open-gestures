@@ -11,11 +11,10 @@ from mediapipe.tasks import python as mp_python
 from mediapipe.tasks.python import vision as mp_vision
 from mediapipe.tasks.python.vision.core.vision_task_running_mode import VisionTaskRunningMode
 
-from core.cooldown     import Cooldown
-from core.router       import GestureRouter
-from core.swipe_tracker import SwipeTracker
+from core.cooldown import Cooldown
+from core.router import GestureRouter
+#from core.swipe_tracker import tracker as swipe_tracker
 
-# Forces OpenCV to use X11/xcb backend on Wayland
 os.environ.setdefault("QT_QPA_PLATFORM", "xcb")
 
 MODEL_PATH = Path(__file__).parent / "models" / "gesture_recognizer.task"
@@ -61,7 +60,11 @@ def _format_label(result) -> str:
 
 def _build_recognizer(slot: _ResultSlot) -> mp_vision.GestureRecognizer:
     def _on_result(result, _output_image, _timestamp_ms: int) -> None:
-        slot.put(result)
+        slot.put(result) #puts wrist position do not edit
+        if result and result.hand_landmarks:
+            swipe_tracker.feed(result.hand_landmarks)
+        else:
+            swipe_tracker.feed([])
 
     options = mp_vision.GestureRecognizerOptions(
         base_options=mp_python.BaseOptions(model_asset_path=str(MODEL_PATH)),
@@ -92,19 +95,9 @@ def _draw_overlay(frame, label: str, fired: str) -> None:
 # ── Main ───────────────────────────────────────────────────────────────────
 
 def main() -> None:
-    if not MODEL_PATH.exists():
-        raise FileNotFoundError(
-            f"Model not found: {MODEL_PATH}\n"
-            "Download with:\n"
-            "  wget https://storage.googleapis.com/mediapipe-models/"
-            "gesture_recognizer/gesture_recognizer/float16/latest/"
-            "gesture_recognizer.task -O models/gesture_recognizer.task"
-        )
-
-    slot    = _ResultSlot()
+    slot     = _ResultSlot()
     cooldown = Cooldown()
-    router  = GestureRouter(cooldown)
-    swiper  = SwipeTracker()
+    router   = GestureRouter(cooldown)
 
     cap = cv2.VideoCapture(0)
     if not cap.isOpened():
@@ -135,32 +128,17 @@ def main() -> None:
             bgr = cv2.flip(bgr, 1)
             rgb = cv2.cvtColor(bgr, cv2.COLOR_BGR2RGB)
 
-            # Strictly increasing timestamp — required by both recognizers
             ts_ms = int((time.monotonic() - t0) * 1000)
             if ts_ms <= last_ts:
                 ts_ms = last_ts + 1
             last_ts = ts_ms
 
-            # .copy() required — MediaPipe holds buffer reference across threads
             mp_image = mp.Image(image_format=mp.ImageFormat.SRGB, data=rgb.copy())
 
-            # Feed the same frame to both models simultaneously
             recognizer.recognize_async(mp_image, ts_ms)
-            swiper.feed(mp_image, ts_ms)
 
-            # ── Route static gestures ──────────────────────────────────────
             result    = slot.get()
             triggered = router.route(result)
-
-            # ── Route swipe gestures ───────────────────────────────────────
-            # SwipeTracker returns a gesture name like "swipe_left_1" directly;
-            # we pass it through the cooldown + action dispatch in the router.
-            if not triggered:
-                swipe = swiper.detect()
-                if swipe and cooldown.can_trigger(swipe):
-                    triggered = router.dispatch_by_name(swipe)
-                    if triggered:
-                        cooldown.record(swipe)
 
             now = time.monotonic()
             if triggered:
@@ -178,7 +156,6 @@ def main() -> None:
     finally:
         cap.release()
         recognizer.close()
-        swiper.close()
         cv2.destroyAllWindows()
         print("Exited cleanly.")
 

@@ -1,8 +1,8 @@
 {
   "gesture_map": {
     "default": {
-      "close_2": "close_window",
-      "close_1": "pause_media",
+      "closed_2": "close_window",
+      "closed_1": "pause_media",
       "open_1": "play_media",
       "open_2": "open_browser",
       "thumb_up_1": "volume_up",
@@ -15,8 +15,8 @@
       "point_up_2": "zoom_in",
       "point_down_1": "",
       "point_down_2": "",
-      "peace_1": "brightness_down",
-      "peace_2": "zoom_out",
+      "victory_1": "brightness_down",
+      "victory_2": "zoom_out",
       "swipe_up_1": "mute_media",
       "swipe_up_2": "open_custom",
       "swipe_down_1": "unmute_media",

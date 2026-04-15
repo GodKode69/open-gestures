@@ -2,7 +2,7 @@ from __future__ import annotations
 import subprocess
 
 GESTURE_LABEL = "Victory"
-GESTURE_NAME  = "victory_2"
+GESTURE_NAME  = "victory_1"
 
 
 def matches(result) -> bool:
