@@ -1,20 +1,16 @@
-import sys
-import os
-sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "../..")))
-
 import subprocess
 from actions.base import BaseAction
 from actions.system import system
-
+ 
 class PlayMedia(BaseAction):
     name = "Play Media"
     description = "Play system media"
     id = "play_media"
-
+ 
     def execute(self) -> None:
         sys = system()
-        
-        if sys=="linux":
+ 
+        if sys == "linux":
             try:
                 subprocess.Popen(
                     ["playerctl", "play"],
@@ -22,9 +18,15 @@ class PlayMedia(BaseAction):
                 )
             except Exception as exc:
                 print(f"[{self.id}] {exc}")
-        elif sys=="win":
-            #code here
-            print("hi")
+ 
+        elif sys in ("win", "windows"):
+            try:
+                from pynput.keyboard import Key, Controller
+                kb = Controller()
+                kb.press(Key.media_play_pause)
+                kb.release(Key.media_play_pause)
+            except Exception as exc:
+                print(f"[{self.id}] {exc}")
         elif sys=="mac":
             try:
                 subprocess.Popen(
@@ -33,5 +35,3 @@ class PlayMedia(BaseAction):
                 )
             except Exception as exc:
                 print(f"[{self.id}] {exc}")
- 
-          

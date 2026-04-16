@@ -1,18 +1,11 @@
-"""
-gestures/motion/swipe_right_2.py  —  Swipe right with 2 hand(s)
-Detection is handled by core/SwipeTracker — this module only declares
-the gesture name so the router and cooldown system can reference it.
-matches() is never called by the router for swipe gestures;
-SwipeTracker.detect() returns the gesture name directly.
-"""
 from __future__ import annotations
+from core.swipe_tracker import tracker
 
-GESTURE_NAME = "swipe_right_2"
-
+GESTURE_NAME = "swipe_down_2"
 
 def matches(result) -> bool:
-    # Swipe gestures are NOT detected via GestureRecognizer results.
-    # SwipeTracker.detect() handles detection via HandLandmarker.
-    # The router routes swipe names returned by swipe_tracker.detect()
-    # directly — this matches() is intentionally never called.
-    return False
+    if not result or not result.hand_landmarks:
+        return False
+    if len(result.hand_landmarks) != 2:
+        return False
+    return tracker.check("right", 2)
