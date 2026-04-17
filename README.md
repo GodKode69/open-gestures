@@ -47,18 +47,26 @@ Open-source, real-time hand gesture control for **all major operating systems** 
 
 ## To Be Implemented In Future
 
-<b>Motion</b>
+<table>
+<tr>
+
+<td valign="top">
+
+<b>Motion Gesture</b>
 
 <table>
 <tr><th>S. No</th><th>Gesture Name</th></tr>
-<tr><td>1. 🫱</td><td>Swipe right</td></tr>
-<tr><td>2. 🫱🫱</td><td>Swipe right 2</td></tr>
-<tr><td>3. 🫲</td><td>Swipe left</td></tr>
-<tr><td>4. 🫲🫲</td><td>Swipe left 2</td></tr>
-<tr><td>5. 🫴</td><td>Swipe up</td></tr>
-<tr><td>6. 🫴🫴</td><td>Swipe up 2</td></tr>
-<tr><td>7. 🫳</td><td>Swipe down</td></tr>
-<tr><td>8. 🫳🫳</td><td>Swipe down 2</td></tr>
+<tr><td>1. 👍</td><td>Thumb up</td></tr>
+<tr><td>2. 👎</td><td>Thumb down</td></tr>
+<tr><td>3. ✌️</td><td>Victory</td></tr>
+<tr><td>4. ☝️</td><td>Point up</td></tr>
+<tr><td>5. ✊</td><td>Closed</td></tr>
+<tr><td>6. 🖐️</td><td>Open</td></tr>
+<tr><td>7. 🤟</td><td>I Love You</td></tr>
+</table>
+
+</td>
+</tr>
 </table>
 
 ---
