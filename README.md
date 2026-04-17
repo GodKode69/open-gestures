@@ -8,6 +8,7 @@ Open-source, real-time hand gesture control for **all major operating systems** 
 
 <table>
 <tr>
+
 <td valign="top">
 
 <b>Single Hand</b>
@@ -41,11 +42,10 @@ Open-source, real-time hand gesture control for **all major operating systems** 
 </table>
 
 </td>
-</tr>
 
 <td valign="top">
 
-<b>Double Hand</b>
+<b>Motion</b>
 
 <table>
 <tr><th>S. No</th><th>Gesture Name</th></tr>
@@ -56,10 +56,11 @@ Open-source, real-time hand gesture control for **all major operating systems** 
 <tr><td>5. 🫴</td><td>Swipe up</td></tr>
 <tr><td>6. 🫴🫴</td><td>Swipe up 2</td></tr>
 <tr><td>7. 🫳</td><td>Swipe down</td></tr>
-<tr><td>7. 🫳🫳</td><td>Swipe down 2</td></tr>
+<tr><td>8. 🫳🫳</td><td>Swipe down 2</td></tr>
 </table>
 
 </td>
+
 </tr>
 </table>
 
