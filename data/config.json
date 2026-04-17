@@ -9,10 +9,8 @@
 
       "thumb_up_1": "volume_up",
       "thumb_up_2": "screenshot",
-
       "thumb_down_1": "volume_down",
       "thumb_down_2": "record_screen",
-
       "iloveyou_1": "mute_media",
       "iloveyou_2": "unmute_media",
 
@@ -29,7 +27,7 @@
       "swipe_up_2": "open_custom",
       "swipe_down_1": "",
       "swipe_down_2": "",
-      "swipe_left_1": "next_workspace",
+      "swipe_left_1": "",
       "swipe_left_2": "",
       "swipe_right_1": "previous_workspace",
       "swipe_right_2": ""
