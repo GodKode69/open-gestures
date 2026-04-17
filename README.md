@@ -42,8 +42,10 @@ Open-source, real-time hand gesture control for **all major operating systems** 
 </table>
 
 </td>
+</tr>
+</table>
 
-<td valign="top">
+## To Be Implemented In Future
 
 <b>Motion</b>
 
@@ -57,11 +59,6 @@ Open-source, real-time hand gesture control for **all major operating systems** 
 <tr><td>6. 🫴🫴</td><td>Swipe up 2</td></tr>
 <tr><td>7. 🫳</td><td>Swipe down</td></tr>
 <tr><td>8. 🫳🫳</td><td>Swipe down 2</td></tr>
-</table>
-
-</td>
-
-</tr>
 </table>
 
 ---
