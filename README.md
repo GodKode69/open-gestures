@@ -7,17 +7,36 @@ Open-source, real-time hand gesture control for **all major operating systems** 
 ## Working Gestures
 
 #### Single Hand
+<table>
+  <tr>
+    <td>
 
-|S. No  |Gesture Name |  |S. No  |Gesture Name     |
-|-------|-------------|  |-------|-----------------|
-| 1. 👍 | Thumb up    |  | 1. 👍👍 | Thumb up 2    |
-| 2. 👎 | Thumb down  |  | 2. 👎👎 | Thumb down 2  |
-| 3. ✌️ | Victory     |  | 3. ✌️✌️ | Victory 2     |
-| 4. ☝️ | Point up    |  | 4. ☝️☝️ | Point up 2    |
-| 5. ✊ | Closed      |  | 5. ✊✊ | Closed 2      |
-| 6. 🖐️ | Open        |  | 6. 👐   | Open 2        |
-| 7. 🤟 | I Love You  |  | 7. 🤟🤟 | I Love You 2  |
+| S. No | Gesture Name |
+|-------|-------------|
+| 1. 👍 | Thumb up    |
+| 2. 👎 | Thumb down  |
+| 3. ✌️ | Victory     |
+| 4. ☝️ | Point up    |
+| 5. ✊ | Closed      |
+| 6. 🖐️ | Open        |
+| 7. 🤟 | I Love You  |
 
+    </td>
+    <td>
+
+| S. No | Gesture Name     |
+|-------|------------------|
+| 1. 👍👍 | Thumb up 2     |
+| 2. 👎👎 | Thumb down 2   |
+| 3. ✌️✌️ | Victory 2      |
+| 4. ☝️☝️ | Point up 2     |
+| 5. ✊✊ | Closed 2       |
+| 6. 👐   | Open 2         |
+| 7. 🤟🤟 | I Love You 2   |
+
+    </td>
+  </tr>
+</table>
 ---
 
 ## How It Works
