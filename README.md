@@ -6,11 +6,11 @@ Open-source, real-time hand gesture control for **all major operating systems** 
 
 ## Working Gestures
 
-#### Single Hand                    Dual Hand
-
 <table>
 <tr>
 <td valign="top">
+
+<b>Single Hand</b>
 
 <table>
 <tr><th>S. No</th><th>Gesture Name</th></tr>
@@ -24,7 +24,10 @@ Open-source, real-time hand gesture control for **all major operating systems** 
 </table>
 
 </td>
+
 <td valign="top">
+
+<b>Double Hand</b>
 
 <table>
 <tr><th>S. No</th><th>Gesture Name</th></tr>
