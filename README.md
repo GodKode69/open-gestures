@@ -4,6 +4,22 @@ Open-source, real-time hand gesture control for **all major operating systems** 
 
 ---
 
+## Working Gestures
+
+#### Single Hand
+
+|S. No  |Gesture Name |
+|-------|-------------|
+| 1. 👍 | Thumb up    |
+| 2. 👎 | Thumb down  |
+| 3. ✌️ | Victory     |
+| 4. ☝️ | Point up    |
+| 5. ✊ | Closed      |
+| 6. 🖐️ | Open        |
+| 7. 🤟 | I Love You  |
+
+---
+
 ## How It Works
 
 A webcam feed is captured frame by frame using OpenCV. Each frame is converted from BGR to RGB and passed asynchronously to MediaPipe's GestureRecognizer, which runs on an internal thread. Results are stored in a thread-safe slot and consumed on the main loop. The latest available result is passed to a `GestureRouter`, which checks every registered gesture module in priority order. If a module's `matches()` function returns true and its cooldown has elapsed, the module's `action()` is executed. An overlay is drawn on the current frame showing the detected gesture label and the last fired action, then displayed in an OpenCV window.
