@@ -19,7 +19,7 @@ class BrightnessDown(BaseAction):
             except Exception as exc:
                 print(f"[{self.id}] {exc}")
  
-        elif sys in ("win", "windows"):
+        elif sys == "win":
             try:
                 import screen_brightness_control as sbc
                 current = sbc.get_brightness(display=0)[0]

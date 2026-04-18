@@ -18,7 +18,7 @@ class PauseMedia(BaseAction):
                 )
             except Exception as exc:
                 print(f"[{self.id}] {exc}")
-        elif sys in ("win", "windows"):
+        elif sys == "win":
             try:
                 from pynput.keyboard import Key, Controller
                 kb = Controller()

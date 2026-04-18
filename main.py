@@ -19,8 +19,7 @@ os.environ.setdefault("QT_QPA_PLATFORM", "xcb")
 
 MODEL_PATH = Path(__file__).parent / "models" / "gesture_recognizer.task"
 
-
-# ── Thread-safe result slot (GestureRecognizer) ────────────────────────────
+# ----- Result Slot -----
 
 class _ResultSlot:
     def __init__(self) -> None:
@@ -56,22 +55,11 @@ def _format_label(result) -> str:
     return "  |  ".join(parts)
 
 
-# ── MediaPipe GestureRecognizer ────────────────────────────────────────────
+# ----- Gesture Recogniser -----
 
 def _build_recognizer(slot: _ResultSlot) -> mp_vision.GestureRecognizer:
     def _on_result(result, _output_image, _timestamp_ms: int) -> None:
         slot.put(result) #puts wrist position do not edit
-<<<<<<< HEAD
-        
-
-=======
-        """
-        if result and result.hand_landmarks:
-            swipe_tracker.feed(result.hand_landmarks)
-        else:
-            swipe_tracker.feed([])
-        """
->>>>>>> 7056694 (changes to default gesture map + changes to cooldown.py)
     options = mp_vision.GestureRecognizerOptions(
         base_options=mp_python.BaseOptions(model_asset_path=str(MODEL_PATH)),
         running_mode=VisionTaskRunningMode.LIVE_STREAM,
@@ -84,7 +72,7 @@ def _build_recognizer(slot: _ResultSlot) -> mp_vision.GestureRecognizer:
     return mp_vision.GestureRecognizer.create_from_options(options)
 
 
-# ── Overlay ────────────────────────────────────────────────────────────────
+# ----- Preview -----
 
 def _draw_overlay(frame, label: str, fired: str) -> None:
     h, w = frame.shape[:2]
@@ -98,7 +86,7 @@ def _draw_overlay(frame, label: str, fired: str) -> None:
                     (12, 50), cv2.FONT_HERSHEY_SIMPLEX, 0.60, (80, 255, 120), 2, cv2.LINE_AA)
 
 
-# ── Main ───────────────────────────────────────────────────────────────────
+# ----- Main Program -----
 
 def main() -> None:
     slot     = _ResultSlot()

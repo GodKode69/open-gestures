@@ -19,7 +19,7 @@ class MuteMedia(BaseAction):
             except Exception as exc:
                 print(f"[{self.id}] {exc}")
  
-        elif sys in ("win", "windows"):
+        elif sys == "win":
             try:
                 import pythoncom
                 from ctypes import cast, POINTER

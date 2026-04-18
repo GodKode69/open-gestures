@@ -9,7 +9,8 @@ from core.cooldown import Cooldown
 from core.config  import resolve_gesture_action
 from actions.base import BaseAction
 
-# ── Action registry ────────────────────────────────────────────────────────
+# ----- Actions registration -----
+
 _action_registry: dict[str, BaseAction] = {}
 _registry_loaded = False
 
@@ -57,7 +58,7 @@ def _build_action_registry() -> None:
     print(f"[Router] Registered {len(_action_registry)} actions:")
     for action_id in sorted(_action_registry):
         a = _action_registry[action_id]
-        print(f"  • {action_id:25s} — {a.name}") # gesutre-action
+        #print(f"  • {action_id:25s} — {a.name}") # gesutre-action
 
 
 def _get_action(action_id: str) -> Optional[BaseAction]:
@@ -66,7 +67,7 @@ def _get_action(action_id: str) -> Optional[BaseAction]:
     return _action_registry.get(action_id)
 
 
-# ── Gesture module loader ──────────────────────────────────────────────────
+# ----- Gesture Loader -----
 
 def _load_gesture_modules() -> list:
     base    = Path(__file__).parent.parent / "gestures"
@@ -90,31 +91,24 @@ def _load_gesture_modules() -> list:
                 continue
             raw.append((mod.GESTURE_NAME, mod))
 
-    # _2 (double-hand) before _1 (single-hand); alphabetical within each tier
-    raw.sort(key=lambda item: (0 if item[0].endswith("_2") else 1, item[0]))
+    raw.sort(key=lambda item: (0 if item[0].endswith("_2") else 1, item[0])) # loads _2 before _1
 
     modules = [mod for _, mod in raw]
     print(f"[Router] Loaded {len(modules)} gesture modules:")
-    for mod in modules:
-        print(f"  • {mod.GESTURE_NAME}")
+    #for mod in modules:
+    #    print(f"  • {mod.GESTURE_NAME}")
     return modules
 
 
-# ── GestureRouter ──────────────────────────────────────────────────────────
+# ----- Gesture Router -----
 
 class GestureRouter:
     def __init__(self, cooldown: Cooldown) -> None:
         self._cooldown = cooldown
         self._modules  = _load_gesture_modules()
-        _build_action_registry()  # eager load so first gesture fires instantly
+        _build_action_registry() 
 
     def route(self, result) -> Optional[str]:
-        """
-        Check all static gesture modules against the latest GestureRecognizer
-        result. For the first match whose cooldown has elapsed, look up the
-        mapped action in config.json and execute it.
-        Returns the GESTURE_NAME that fired, or None.
-        """
         if result is None:
             return None
 
@@ -139,12 +133,6 @@ class GestureRouter:
         return None
 
     def dispatch_by_name(self, gesture_name: str) -> Optional[str]:
-        """
-        Look up the action mapped to gesture_name in config.json and execute it.
-        Used directly by main.py for swipe gestures detected by SwipeTracker,
-        which bypass the matches() system entirely.
-        Returns gesture_name if action fired successfully, else None.
-        """
         action_id = resolve_gesture_action(gesture_name)
         if action_id is None:
             print(f"[Router] No action mapped for '{gesture_name}' — skipping")
